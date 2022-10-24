@@ -2,14 +2,9 @@ package transport;
 
 import java.time.LocalDate;
 
-public class Car {
+public class Car extends Transport{
 
-    private final String brand;
-    private final String model;
     private Float engineVolume;
-    private String color;
-    private final int yearProduction;
-    private final String countryProduction;
     private String transmission;
     private final String bodyType;
     private String regNumber;
@@ -18,45 +13,25 @@ public class Car {
     public static Key key;
     public static  Insurance insurance;
 
+    public Car(String brand,
+               String model,
+               int yearProduction,
+               String countryProduction,
+               String color,
+               int maximumSpeed,
+               Float engineVolume,
+               String transmission,
+               String bodyType,
+               String regNumber,
+               int seatsNumber,
+               boolean winterTyres) {
+        super(brand, model, yearProduction, countryProduction, color, maximumSpeed);
 
-
-    public Car(String brand, String model, Float engineVolume, String color,
-               int yearProduction, String countryProduction, String transmission,
-               String bodyType, String regNumber, int seatsNumber, boolean winterTyres) {
-
-        if (brand == null){
-            this.brand = "default";
-        } else {
-            this.brand = brand;
-        }
-        if (model == null) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
 
         if (engineVolume == null) {
             this.engineVolume = 1.5f;
         }else {
             this.engineVolume = engineVolume;
-        }
-
-        if (color== null){
-            this.color="White";
-        } else {
-            this.color = color;
-        }
-
-        if (yearProduction == 0) {
-            this.yearProduction = 2000;
-        } else {
-            this.yearProduction = yearProduction;
-        }
-
-        if (countryProduction == null){
-            this.countryProduction = "default";
-        } else {
-            this.countryProduction = countryProduction;
         }
 
         if (transmission == null) {
@@ -92,23 +67,6 @@ public class Car {
         }
     }
 
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYearProduction() {
-        return yearProduction;
-    }
-
-    public String getCountryProduction() {
-        return countryProduction;
-    }
-
     public String getBodyType() {
         return bodyType;
     }
@@ -124,16 +82,6 @@ public class Car {
     public void setEngineVolume(Float engineVolume) {
         if (engineVolume != 0) {
             this.engineVolume = engineVolume;
-        }
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        if (color != null) {
-            this.color = color;
         }
     }
 
@@ -192,10 +140,18 @@ public class Car {
 
     @Override
     public String toString() {
-        return " Марка, модель: "+brand + " " + model + ", объем двигателя: " + engineVolume + ", цвет: " + color +
-                ", год выпуска: " + yearProduction + ", страна изготовитель: " + countryProduction + ", трансмиссия: "
-                + transmission + ", тип кузова: " + bodyType + ", регистрационный номер: " + regNumber +
-                ", количество мест: " + seatsNumber + ", зимняя резина: " + winterTyres;
+        return "Машина. " + super.toString() +
+                ", объем двигателя: " + engineVolume +
+                ", трансмиссия: " + transmission +
+                ", тип кузова: " + bodyType +
+                ", регистрационный номер: " + regNumber +
+                ", количество мест: " + seatsNumber +
+                ", зимняя резина: " + winterTyres;
+    }
+
+    @Override
+    public void refill() {
+        System.out.println("Можно заправлять бензином, дизелем на заправке или заряжать на специальных электропарковках, если это электрокар");
     }
 
     public void printCar() {
