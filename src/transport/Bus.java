@@ -12,12 +12,15 @@ public class Bus extends Transport{
     }
 
     @Override
+    public void refill() {
+        System.out.println("Можно заправлять бензином или дизелем на заправке");
+    }
+
+
+    @Override
     public String toString() {
         return "Автобус. " + super.toString();
     }
 
-    @Override
-    public void refill() {
-        System.out.println("Можно заправлять бензином или дизелем на заправке");
-    }
+
 }

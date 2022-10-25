@@ -1,6 +1,7 @@
 package transport;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Car extends Transport{
 
@@ -138,16 +139,6 @@ public class Car extends Transport{
         winterTyres = !winterTyres;
     }
 
-    @Override
-    public String toString() {
-        return "Машина. " + super.toString() +
-                ", объем двигателя: " + engineVolume +
-                ", трансмиссия: " + transmission +
-                ", тип кузова: " + bodyType +
-                ", регистрационный номер: " + regNumber +
-                ", количество мест: " + seatsNumber +
-                ", зимняя резина: " + winterTyres;
-    }
 
     @Override
     public void refill() {
@@ -172,6 +163,30 @@ public class Car extends Transport{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return seatsNumber == car.seatsNumber && winterTyres == car.winterTyres && Objects.equals(engineVolume, car.engineVolume) && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(regNumber, car.regNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(engineVolume, transmission, bodyType, regNumber, seatsNumber, winterTyres);
+    }
+
+    @Override
+    public String toString() {
+        return "Машина. " + super.toString() +
+                ", объем двигателя: " + engineVolume +
+                ", трансмиссия: " + transmission +
+                ", тип кузова: " + bodyType +
+                ", регистрационный номер: " + regNumber +
+                ", количество мест: " + seatsNumber +
+                ", зимняя резина: " + winterTyres;
     }
 
     public static class Key {
